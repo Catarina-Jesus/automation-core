@@ -1,6 +1,6 @@
 import { Page, Locator} from '@playwright/test'
-import { ProductCard } from './components/ProductCard';
-import { navBar as NavBar } from './components/NavBar'; 
+import { ProductCard } from './components/productCard';
+import { navBar as NavBar } from './components/navBar'; 
 
 export class HomePage{
     page: Page;
@@ -19,9 +19,9 @@ export class HomePage{
         this.mainHeader = page.getByText('Raider Test Store');
         this.loginLink = page.getByRole('link', { name: 'Login or register' });
         this.cart = page.getByRole('link', { name: 'Cart: 0 item(s)' });
-        this.navigationBar = new NavBar(page);
+        this.navigationBar = new NavBar(page.getByRole('navigation'));
         this.header = page.getByRole('heading', { name: 'Featured Products' });
-        this.productCard = new ProductCard(page);
+        this.productCard = new ProductCard(page.getByRole('link', { name: 'Skinsheen Bronzer Stick' }));
         this.footer = page.getByRole('contentinfo');
     }
 
@@ -30,10 +30,8 @@ export class HomePage{
         await this.cart.click();
     }
 
-    async searchProduct(name: string) {
-        await this.searchInput.fill(name);
-        await this.searchInput.press('Enter');
+    async getProductCardByIndex(index: number): Promise<ProductCard> {
+        return new ProductCard(this.productCard.root.nth(index));
     }
 
-    
 }
