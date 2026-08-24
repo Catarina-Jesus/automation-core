@@ -1,20 +1,17 @@
 import { Page, Locator} from '@playwright/test'
 
-
 export class ProductCard{
     readonly root: Locator;
     readonly productLink: Locator;
-    readonly addToCartLink: Locator;
+    readonly addToCartButton: Locator;
     readonly productTitle: Locator;
     readonly productImage: Locator;
     readonly productPrice: Locator;
 
-
-    
  constructor(root: Locator) {
         this.root = root;
-        this.productLink = root.getByRole('link', {name: /product/i });
-        this.addToCartLink = root.getByRole('button', { name: 'Add to Cart' });
+        this.productLink = root.getByRole('link', {name: /product/ });
+        this.addToCartButton = root.getByRole('button', {name: /add to cart/i});
         this.productTitle = root.getByText('Skinsheen Bronzer Stick');
         this.productImage = root.locator('Skinsheen Bronzer Stick');
         this.productPrice = root.getByText('Makeup $29.50'); 
@@ -25,7 +22,7 @@ export class ProductCard{
     }
 
      async addToCart(){
-        await this.addToCartLink.click();
+        await this.addToCartButton.click();
     }
     
 }

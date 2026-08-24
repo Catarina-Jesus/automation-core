@@ -1,4 +1,3 @@
-//example gave in class
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({page }) =>{
@@ -6,7 +5,16 @@ test.beforeEach(async ({page }) =>{
 });
 
 test ('Product can be added to cart from the Homepage', async ({page}) =>{
-    await page.locator('.product-card').filter({hasText: 'Skinsheen Bronzer Stick'}). getByRole('button', {name: 'Add to cart'}).click()
-    await expect(page.getByRole('link', {name: /Cart/ })).toContainText('1 item(s)')
+    await page.locator('.product-card').filter({hasText: 'Skinsheen Bronzer Stick'}).getByRole('button', {name: 'Add to cart'}).click();
+    await expect(page.getByRole('link', {name: /Cart/ })).toContainText('1 item(s)');
 })
 
+test ('Checking the total cart value', async ({page}) =>{
+    await page.locator('.product-card').nth(0).getByRole('button', {name: 'Add to cart'}).click();
+    await page.locator('.product-card').nth(1).getByRole('button', {name: 'Add to cart'}).click();
+
+    await page.goto('https://raider-test-site.onrender.com/cart');
+
+    const totalCartValue = page.locator('.total-cart-value').getByText('$48.50');
+    console.log(totalCartValue);
+})
