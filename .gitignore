@@ -17,6 +17,9 @@ userData.ts
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+#UserData.ts
+userData.ts
+
 # Mono auto generated files
 mono_crash.*
 
