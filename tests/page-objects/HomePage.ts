@@ -10,6 +10,7 @@ export class HomePage{
     navigationBar: navBar;
     header: Locator;
     productCard: ProductCard;
+    productCard2: ProductCard;
     footer: Locator;
 
     constructor (page: Page){
@@ -19,16 +20,13 @@ export class HomePage{
         this.cart = page.getByRole('link', { name: 'Cart: 0 item(s)' });
         this.navigationBar = new navBar(page.getByRole('navigation'));
         this.header = page.getByRole('heading', { name: 'Featured Products' });
-        this.productCard = new ProductCard(page.getByRole('link', { name: 'Skinsheen Bronzer Stick' }));
         this.footer = page.getByRole('contentinfo');
+        this.productCard = new ProductCard(page.locator('.product-card').filter({hasText: 'Skinsheen Bronzer Stick'}));        
+        this.productCard2 = new ProductCard(page.locator('.product-card').filter({hasText: 'BeneFit Girl Meets Pearl'}));
     }
 
     async openCart() {
         await this.cart.click();
-    }
-
-    async getProductCardByIndex(index: number): Promise<ProductCard> {
-        return new ProductCard(this.productCard.root.nth(index));
     }
 
 }
