@@ -12,7 +12,7 @@
 *.env
 
 #User data
-../userData.json
+userData.ts
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

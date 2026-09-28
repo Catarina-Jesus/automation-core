@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { invalidUserData, validUserData } from './userData';
+import { invalidUserData, validUserData } from '../userData';
 
 test.beforeEach(async ({page }) =>{
     await page.goto('https://raider-test-site.onrender.com');
