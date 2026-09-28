@@ -2,7 +2,6 @@ import { Page, Locator} from '@playwright/test'
 import { navBar } from './components/NavBar';
 import { ProductCard } from './components/ProductCard';
 
-
 export class HomePage{
     page: Page;
     mainHeader: Locator;
@@ -13,8 +12,6 @@ export class HomePage{
     productCard: ProductCard;
     productCard2: ProductCard;
     footer: Locator;
-
-
 
     constructor (page: Page){
         this.page = page;
@@ -27,7 +24,6 @@ export class HomePage{
         this.productCard = new ProductCard(page.locator('.product-card').filter({hasText: 'Skinsheen Bronzer Stick'}));        
         this.productCard2 = new ProductCard(page.locator('.product-card').filter({hasText: 'BeneFit Girl Meets Pearl'}));
     }
-
 
     async openCart() {
         await this.cart.click();

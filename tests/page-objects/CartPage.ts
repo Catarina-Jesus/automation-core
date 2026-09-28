@@ -9,7 +9,6 @@ export class CartPage{
     removeItem: Locator;
     quantityCell: Locator;
 
-
     constructor (page: Page){
         this.page = page;
         this.header = page.getByRole('heading', { name: 'Shopping Cart' });
@@ -20,14 +19,11 @@ export class CartPage{
         this.quantityCell = page.getByRole('cell', { name: '1' });
     }
 
-
     async removeItemFromCart() {
         await this.removeItem.click();
     }
 
     async clickToContinueShopping() {
         await this.continueShoppingLink.click();
-}
-
-    
+    } 
 }
