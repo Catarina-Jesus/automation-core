@@ -38,12 +38,18 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: {
+        ...devices['Desktop Firefox'],
+        launchOptions: {
+          firefoxUserPrefs: {
+            'gfx.webrender.force-disabled': true,
+            'gfx.webrender.software': false,
+          },
+        },
+      },
     },
-
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
