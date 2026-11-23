@@ -18,3 +18,7 @@ test ('Checking the total cart value', async ({page}) =>{
     const totalCartValue = page.locator('.total-cart-value').getByText('$48.50');
     console.log(totalCartValue);
 })
+
+test.only('Checking Homepage UI', {tag: '@visual' }, async ({page}) =>{
+    await expect(page).toHaveScreenshot('homepage.png', {fullPage: true});
+})
